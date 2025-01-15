@@ -2,28 +2,6 @@
 # 🛠️ SERVER.R - Logique Serveur du Tableau de Bord-----------------------------
 # ====================================================
 
-# 📦 CHARGEMENT DES LIBRAIRIES
-library(shiny)
-library(ggplot2)
-library(dplyr)
-library(scales)
-library(DT) # Pour les tables interactives
-library(plotly)
-
-# 🗃️ IMPORTATION DE LA BASE DE DONNÉES ---------------
-setwd("~/Library/Mobile Documents/com~apple~CloudDocs/Master 2/Projet ML/EM-DAT-Explorer")
-
-df_analysis <- readRDS("data_cleaned_final.rds")
-
-# 🔄 Transformation des variables
-
-# Transformer les facteurs (factor) en chaînes de caractères (character)
-df_analysis <- df_analysis %>%
-  mutate(across(where(is.factor), as.character))
-
-# Correction de l'encodage UTF-8
-df_analysis$country <- iconv(df_analysis$country, from = "UTF-8", to = "UTF-8", sub = "")
-
 # ====================================================
 # 🔄 LOGIQUE SERVEUR------------------------------------------------------------
 # ====================================================
